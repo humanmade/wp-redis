@@ -233,7 +233,7 @@ function wp_cache_switch_to_blog( $blog_id ) {
 /**
  * Adds a group or set of groups to the list of global groups.
  *
- * @param string|array $groups A group or an array of groups to add
+ * @param string|string[] $groups A group or an array of groups to add
  */
 function wp_cache_add_global_groups( $groups ) {
 	global $wp_object_cache;
@@ -244,7 +244,7 @@ function wp_cache_add_global_groups( $groups ) {
 /**
  * Adds a group or set of groups to the list of non-persistent groups.
  *
- * @param string|array $groups A group or an array of groups to add
+ * @param string|string[] $groups A group or an array of groups to add
  */
 function wp_cache_add_non_persistent_groups( $groups ) {
 	global $wp_object_cache;
@@ -255,7 +255,7 @@ function wp_cache_add_non_persistent_groups( $groups ) {
 /**
  * Adds a group or set of groups to the list of groups that use Redis hashes.
  *
- * @param string|array $groups A group or an array of groups to add.
+ * @param string|string[] $groups A group or an array of groups to add.
  */
 function wp_cache_add_redis_hash_groups( $groups ) {
 	global $wp_object_cache;
@@ -327,14 +327,14 @@ class WP_Object_Cache {
 	 * The amount of times a request was made to Redis
 	 *
 	 * @access private
-	 * @var int
+	 * @var int[]
 	 */
 	var $redis_calls = array();
 
 	/**
 	 * List of global groups
 	 *
-	 * @var array
+	 * @var string[]
 	 * @access protected
 	 */
 	var $global_groups = array();
@@ -342,7 +342,7 @@ class WP_Object_Cache {
 	/**
 	 * List of non-persistent groups
 	 *
-	 * @var array
+	 * @var string[]
 	 * @access protected
 	 */
 	var $non_persistent_groups = array();
@@ -350,7 +350,7 @@ class WP_Object_Cache {
 	/**
 	 * List of groups which use Redis hashes.
 	 *
-	 * @var array
+	 * @var string[]
 	 * @access protected
 	 */
 	var $redis_hash_groups = array();
@@ -425,7 +425,7 @@ class WP_Object_Cache {
 	/**
 	 * Sets the list of global groups.
 	 *
-	 * @param array $groups List of groups that are global.
+	 * @param string[] $groups List of groups that are global.
 	 */
 	public function add_global_groups( $groups ) {
 		$groups = (array) $groups;
@@ -437,7 +437,7 @@ class WP_Object_Cache {
 	/**
 	 * Sets the list of non-persistent groups.
 	 *
-	 * @param array $groups List of groups that are non-persistent.
+	 * @param string[] $groups List of groups that are non-persistent.
 	 */
 	public function add_non_persistent_groups( $groups ) {
 		$groups = (array) $groups;
@@ -449,7 +449,7 @@ class WP_Object_Cache {
 	/**
 	 * Sets the list of groups that use Redis hashes.
 	 *
-	 * @param array $groups List of groups that use Redis hashes.
+	 * @param string[] $groups List of groups that use Redis hashes.
 	 */
 	public function add_redis_hash_groups( $groups ) {
 		$groups = (array) $groups;
