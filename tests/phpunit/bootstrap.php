@@ -5,6 +5,8 @@ if ( ! $_tests_dir ) {
 	$_tests_dir = '/tmp/wordpress-tests-lib';
 }
 
+define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', __DIR__ . '/../../vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php' );
+
 require_once $_tests_dir . '/includes/functions.php';
 
 if ( getenv( 'WP_CORE_DIR' ) ) {
@@ -18,6 +20,8 @@ if ( getenv( 'WP_CORE_DIR' ) ) {
 if ( getenv( 'WP_REDIS_USE_CACHE_GROUPS' ) ) {
 	define( 'WP_REDIS_USE_CACHE_GROUPS', true );
 }
+
+define( 'WP_REDIS_IGNORE_GLOBAL_GROUPS', [ 'wp-redis-ignored-group' ] );
 
 // Easiest way to get this to where WordPress will load it
 copy( dirname( dirname( dirname( __FILE__ ) ) ) . '/object-cache.php', $_core_dir . '/wp-content/object-cache.php' );
