@@ -129,8 +129,10 @@ function wp_cache_flush() {
 
 	if ( 'cli' !== php_sapi_name() ) {
 		$allowed = apply_filters( 'wp_cache_flush_allowed_non_cli', true );
-		trigger_error( sprintf( 'wp_cache_flush() is only allowed via WP CLI. Called from %s', $trace ), E_USER_WARNING );
-		return false;
+		if ( ! $allowed ) {
+			trigger_error( sprintf( 'wp_cache_flush() is only allowed via WP CLI. Called from %s', $trace ), E_USER_WARNING );
+			return false;
+		}
 	}
 
 	return $wp_object_cache->flush();
